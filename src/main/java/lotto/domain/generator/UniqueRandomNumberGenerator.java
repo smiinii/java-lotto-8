@@ -2,7 +2,6 @@ package lotto.domain.generator;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.domain.rule.LottoRule;
-import lotto.domain.ticket.Lotto;
 
 import java.util.List;
 
