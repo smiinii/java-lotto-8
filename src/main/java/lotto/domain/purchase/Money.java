@@ -1,6 +1,6 @@
 package lotto.domain.purchase;
 
-public class Money {
+public final class Money {
 
     private static final int ZERO = 0;
     private final int money;
