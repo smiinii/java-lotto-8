@@ -23,13 +23,13 @@ public class Money {
 
     private void validatePositive(int number) {
         if (number < 0) {
-            throw new IllegalArgumentException("양의 정수가 아닙니다.");
+            throw new IllegalArgumentException("[ERROR] 양의 정수가 아닙니다.");
         }
     }
 
     private void validateDivisibleByLottoPrice(int number) {
         if ((number % Lotto.LOTTO_PRICE) != ZERO) {
-            throw new IllegalArgumentException(Lotto.LOTTO_PRICE + "원으로 딱 나누어 떨어져야 합니다.");
+            throw new IllegalArgumentException("[ERROR] " + Lotto.LOTTO_PRICE + "원으로 딱 나누어 떨어져야 합니다.");
         }
     }
 }
