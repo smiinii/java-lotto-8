@@ -1,5 +1,10 @@
 package lotto.util;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class InputParser {
 
     private InputParser() {}
@@ -11,6 +16,11 @@ public class InputParser {
         }catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 숫자가 아닙니다.");
         }
+    }
+
+    public static List<Integer> parseWinningNumbers(String input) {
+        validateEmpty(input);
+        return new ArrayList<>();
     }
 
     private static void validateEmpty(String input) {
