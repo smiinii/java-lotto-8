@@ -3,6 +3,8 @@ package lotto.util;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -35,5 +37,25 @@ public class ParseWinningNumbersTest {
         String input = "1, 2, 3";
         // when & then
         assertThat(input).isEqualTo("1, 2, 3");
+    }
+
+    @Test
+    @DisplayName("숫자가 아니면 예외처리")
+    void validateDigitsTest() {
+        // given & when & then
+        assertThatThrownBy(() -> InputParser.parseWinningNumbers("1, a, 2"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("숫자가 아닙니다.");
+    }
+
+    @Test
+    @DisplayName("숫자가 맞으면 성공")
+    void parseWinningNumbersTest() {
+        // given
+        String input = "1, 2, 3";
+        // when
+        List<Integer> parseWinningNumbers = InputParser.parseWinningNumbers(input);
+        // then
+        assertThat(parseWinningNumbers).containsExactly(1, 2, 3);
     }
 }
