@@ -99,7 +99,7 @@
 - `InputView` / `OutputView`   
 사용자와의 입출력만 담당한다.
 
-- `Parser`
+- `InputParser`
 입력값의 파싱을 담당한다.
 
 - `Money` / `WinningNumbers` / `BonusNumber`   
