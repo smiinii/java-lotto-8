@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-public class InputParserTest {
+public class ParseMoneyTest {
 
     @Test
     @DisplayName("양수 입력 시 파싱 성공")
