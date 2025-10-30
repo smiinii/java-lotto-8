@@ -1,14 +1,11 @@
 package lotto.domain.ticket;
 
+import lotto.domain.rule.LottoRule;
+
 import java.util.LinkedHashSet;
 import java.util.List;
 
 public class Lotto {
-
-    public static final int LOTTO_NUMBER_MIN = 1;
-    public static final int LOTTO_NUMBER_MAX = 45;
-    public static final int LOTTO_NUMBER_COUNT = 6;
-    public static final int LOTTO_PRICE = 1000;
 
     private final List<Integer> numbers;
 
@@ -20,16 +17,16 @@ public class Lotto {
     }
 
     private void validateLottoCount(List<Integer> numbers) {
-        if (numbers.size() != LOTTO_NUMBER_COUNT) {
+        if (numbers.size() != LottoRule.COUNT) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
     }
 
     private void validateLottoRange(List<Integer> numbers) {
         for (int number : numbers) {
-            if ((number < LOTTO_NUMBER_MIN) || (number > LOTTO_NUMBER_MAX)) {
-                throw new IllegalArgumentException("[ERROR] 로또 번호의 범위는 " + LOTTO_NUMBER_MIN
-                        + " ~ " + LOTTO_NUMBER_MAX + " 입니다.");
+            if ((number < LottoRule.MIN) || (number > LottoRule.MAX)) {
+                throw new IllegalArgumentException("[ERROR] 로또 번호의 범위는 " + LottoRule.MIN
+                        + " ~ " + LottoRule.MAX + " 입니다.");
             }
         }
     }
