@@ -1,7 +1,5 @@
 package lotto.domain.purchase;
 
-import lotto.domain.ticket.Lotto;
-
 public class Money {
 
     private static final int ZERO = 0;
