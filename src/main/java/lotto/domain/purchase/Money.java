@@ -1,11 +1,15 @@
 package lotto.domain.purchase;
 
+import lotto.domain.ticket.Lotto;
+
 public class Money {
 
+    private static final int ZERO = 0;
     private final int money;
 
     private Money(int number) {
         validatePositive(number);
+        validateDivisibleByLottoPrice(number);
         this.money = number;
     }
 
@@ -17,9 +21,15 @@ public class Money {
         return money;
     }
 
-    private static void validatePositive(int number) {
+    private void validatePositive(int number) {
         if (number < 0) {
             throw new IllegalArgumentException("양의 정수가 아닙니다.");
+        }
+    }
+
+    private void validateDivisibleByLottoPrice(int number) {
+        if ((number % Lotto.LOTTO_PRICE) != ZERO) {
+            throw new IllegalArgumentException(Lotto.LOTTO_PRICE + "원으로 딱 나누어 떨어져야 합니다.");
         }
     }
 }
