@@ -28,8 +28,8 @@ public class Money {
     }
 
     private void validateDivisibleByLottoPrice(int number) {
-        if ((number % Lotto.LOTTO_PRICE) != ZERO) {
-            throw new IllegalArgumentException("[ERROR] " + Lotto.LOTTO_PRICE + "원으로 딱 나누어 떨어져야 합니다.");
+        if ((number % LottoPrice.UNIT) != ZERO) {
+            throw new IllegalArgumentException("[ERROR] " + LottoPrice.UNIT + "원으로 딱 나누어 떨어져야 합니다.");
         }
     }
 }
