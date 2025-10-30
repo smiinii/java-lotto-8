@@ -99,6 +99,8 @@
 - `InputView` / `OutputView`   
 사용자와의 입출력만 담당한다.
 
+- `Parser`
+입력값의 파싱을 담당한다.
 
 - `Money` / `WinningNumbers` / `BonusNumber`   
 입력값의 유효성을 검증하여 프로그램의 안정성을 확보한다.
