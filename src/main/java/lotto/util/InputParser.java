@@ -1,10 +1,9 @@
 package lotto.util;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 
 public class InputParser {
 
@@ -23,8 +22,14 @@ public class InputParser {
     public static List<Integer> parseWinningNumbers(String input) {
         validateEmpty(input);
         validateDelimiter(input);
-        List<String> winningNumbers = List.of(input.split(DELIMITER));
-        return winningNumbers.stream().map(Integer::parseInt).collect(Collectors.toList());
+        try {
+            return Arrays.stream(input.split(DELIMITER))
+                    .map(String::trim)
+                    .map(Integer::parseInt)
+                    .toList();
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 숫자가 아닙니다.");
+        }
     }
 
     private static void validateEmpty(String input) {
