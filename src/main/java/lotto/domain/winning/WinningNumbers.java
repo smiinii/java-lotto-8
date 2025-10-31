@@ -1,7 +1,10 @@
 package lotto.domain.winning;
 
+import lotto.domain.result.Rank;
 import lotto.domain.rule.LottoRule;
+import lotto.domain.ticket.Lotto;
 
+import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;
 
@@ -22,6 +25,15 @@ public final class WinningNumbers {
 
     public List<Integer> getWinningNumbers() {
         return winningNumbers;
+    }
+
+    public Rank match(Lotto lotto, BonusNumber bonusNumber) {
+        List<Integer> copy = new ArrayList<>(lotto.getNumbers());
+        copy.retainAll(winningNumbers);
+        int matchCount = copy.size();
+
+        boolean bonusMatch = lotto.getNumbers().contains(bonusNumber.getBonusNumber());
+        return Rank.from(matchCount, bonusMatch);
     }
 
     private void validateCount(List<Integer> numbers) {
