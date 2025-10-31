@@ -16,6 +16,10 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
     private void validateLottoCount(List<Integer> numbers) {
         if (numbers.size() != LottoRule.COUNT) {
             throw new IllegalArgumentException("[ERROR] 로또 번호 개수는 " + LottoRule.COUNT + "개 입니다.");
