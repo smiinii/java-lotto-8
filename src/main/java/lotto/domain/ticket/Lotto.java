@@ -13,7 +13,7 @@ public class Lotto {
         validateLottoCount(numbers);
         validateLottoRange(numbers);
         validateLottoDuplication(numbers);
-        this.numbers = numbers;
+        this.numbers = numbers.stream().sorted().toList();
     }
 
     public List<Integer> getNumbers() {
