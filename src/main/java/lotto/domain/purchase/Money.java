@@ -20,7 +20,7 @@ public final class Money {
     }
 
     private void validatePositive(int number) {
-        if (number < 0) {
+        if (number < ZERO) {
             throw new IllegalArgumentException("[ERROR] 양의 정수가 아닙니다.");
         }
     }
