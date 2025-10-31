@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class WinningNumbersTest {
@@ -30,5 +31,28 @@ public class WinningNumbersTest {
         assertThatThrownBy(() -> WinningNumbers.from(numbers))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("당첨 금액 번호의 범위는");
+    }
+
+    @Test
+    @DisplayName("당첨 번호가 중복되면 예외처리")
+    void validateDuplicationTest() {
+        // given
+        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 5);
+        // when
+        assertThatThrownBy(() -> WinningNumbers.from(numbers))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("당첨 번호가 중복됩니다.");
+        // then
+    }
+
+    @Test
+    @DisplayName("모든 검증을 통과하면 성공")
+    void winningNumbersTest() {
+        // given
+        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
+        // when
+        WinningNumbers winningNumbers = WinningNumbers.from(numbers);
+        // then
+        assertThat(winningNumbers.getWinningNumbers()).containsExactly(1, 2, 3, 4, 5, 6);
     }
 }
