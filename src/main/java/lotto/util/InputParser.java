@@ -6,8 +6,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class InputParser {
+    private static final String DELIMITER = ",";
 
-    public static final String DELIMITER = ",";
     private InputParser() {}
 
     public static int parseNumber(String input) {
