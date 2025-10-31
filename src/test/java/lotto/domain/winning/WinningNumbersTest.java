@@ -1,5 +1,7 @@
 package lotto.domain.winning;
 
+import lotto.domain.result.Rank;
+import lotto.domain.ticket.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -53,5 +55,18 @@ public class WinningNumbersTest {
         WinningNumbers winningNumbers = WinningNumbers.from(numbers);
         // then
         assertThat(winningNumbers.getWinningNumbers()).containsExactly(1, 2, 3, 4, 5, 6);
+    }
+
+    @Test
+    @DisplayName("로또 번호와 당첨 번호, 보너스 번호를 비교하여 올바른 Rank 반환한다.")
+    void matchTest() {
+        // given
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        WinningNumbers winningNumbers = WinningNumbers.from(List.of(1, 2, 3, 4, 5, 6));
+        BonusNumber bonusNumber = BonusNumber.of(7, winningNumbers.getWinningNumbers());
+        // when
+        Rank rank = winningNumbers.match(lotto, bonusNumber);
+        // then
+        assertThat(rank).isEqualTo(Rank.FIRST);
     }
 }
