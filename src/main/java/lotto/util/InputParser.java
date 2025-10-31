@@ -10,7 +10,7 @@ public class InputParser {
     public static final String DELIMITER = ",";
     private InputParser() {}
 
-    public static int parseMoney(String input) {
+    public static int parseNumber(String input) {
         validateEmpty(input);
         try {
             return Integer.parseInt(input.trim());
