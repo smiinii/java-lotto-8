@@ -9,7 +9,6 @@ import lotto.domain.winning.BonusNumber;
 import lotto.domain.winning.WinningNumbers;
 import lotto.dto.LottoIssueResult;
 import lotto.dto.LottoGameResult;
-import lotto.util.InputParser;
 
 import java.util.List;
 import java.util.Map;
@@ -24,31 +23,27 @@ public class LottoGameService {
         this.resultCalculator = resultCalculator;
     }
 
-    public LottoIssueResult issue(String input) {
-        int parseNumber = InputParser.parseNumber(input);
-        Money purchaseMoney = Money.of(parseNumber);
-        Lottos issuedLottos = lottoIssuer.issue(purchaseMoney);
-        return new LottoIssueResult(issuedLottos, purchaseMoney);
+    public LottoIssueResult issue(Money purchaseAmount) {
+        Lottos issuedLottos = lottoIssuer.issue(purchaseAmount);
+        return new LottoIssueResult(issuedLottos, purchaseAmount);
     }
 
-    public WinningNumbers parseWinningNumbers(String input) {
-        List<Integer> parseWinningNumbers = InputParser.parseWinningNumbers(input);
-        return WinningNumbers.from(parseWinningNumbers);
+    public WinningNumbers createWinningNumbers(List<Integer> parseNumbers) {
+        return WinningNumbers.from(parseNumbers);
     }
 
-    public BonusNumber parseBonusNumber(String input, WinningNumbers winningNumbers) {
-        int parseBonusNumber = InputParser.parseNumber(input);
-        return BonusNumber.of(parseBonusNumber, winningNumbers.getWinningNumbers());
+    public BonusNumber createBonusNumber(int parseNumber, WinningNumbers winningNumbers) {
+        return BonusNumber.of(parseNumber, winningNumbers.getWinningNumbers());
     }
 
     public LottoGameResult matchResult(LottoIssueResult lottoIssueResult, WinningNumbers winningNumbers, BonusNumber bonusNumber) {
-        Map<Rank, Integer> matchResult = matchReult(lottoIssueResult.getIssuedLottos(), winningNumbers, bonusNumber);
+        Map<Rank, Integer> matchResult = match(lottoIssueResult.getIssuedLottos(), winningNumbers, bonusNumber);
         double lottoYield = calculateYield(matchResult, lottoIssueResult.getPurchaseMoney());
         return new LottoGameResult(matchResult, lottoYield);
     }
 
-    private Map<Rank, Integer> matchReult(Lottos lottos, WinningNumbers winningNumbers, BonusNumber bonusNumber) {
-        return resultCalculator.matchReult(lottos, winningNumbers, bonusNumber);
+    private Map<Rank, Integer> match(Lottos issuedLottos, WinningNumbers winningNumbers, BonusNumber bonusNumber) {
+        return resultCalculator.matchReult(issuedLottos, winningNumbers, bonusNumber);
     }
 
     private double calculateYield(Map<Rank, Integer> matchResult, Money money) {
