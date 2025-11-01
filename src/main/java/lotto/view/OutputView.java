@@ -1,5 +1,6 @@
 package lotto.view;
 
+import lotto.domain.purchase.Money;
 import lotto.domain.result.Rank;
 import lotto.domain.ticket.Lotto;
 import lotto.domain.ticket.Lottos;
@@ -23,6 +24,10 @@ public class OutputView {
             }
             printRankLine(rank, matchReult.get(rank));
         }
+    }
+
+    public void printTotalPrizeAmount(double totalPrizeAmount) {
+        System.out.println("총 수익률은 " + totalPrizeAmount + "%입니다.");
     }
 
     private void printHeader() {
