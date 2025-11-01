@@ -10,6 +10,7 @@ import java.util.Map;
 public class OutputView {
 
     public void printIssuedLotto(Lottos lottos) {
+        System.out.println();
         System.out.println(lottos.getLottoCount() + "개를 구매했습니다.");
         for (Lotto lotto : lottos.getLottos()) {
             System.out.println("[" + lotto.getNumbers() + "]");
@@ -30,7 +31,12 @@ public class OutputView {
         System.out.println("총 수익률은 " + totalPrizeAmount + "%입니다.");
     }
 
+    public void printError(String message) {
+        System.out.println(message);
+    }
+
     private void printHeader() {
+        System.out.println();
         System.out.println("당첨 통계");
         System.out.println("---");
     }
