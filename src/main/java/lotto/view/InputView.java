@@ -2,8 +2,6 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 
-import javax.crypto.spec.PSource;
-
 public class InputView {
 
     public String readPurchaseAmount() {

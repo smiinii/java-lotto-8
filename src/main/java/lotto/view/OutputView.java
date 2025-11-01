@@ -1,6 +1,5 @@
 package lotto.view;
 
-import lotto.domain.purchase.Money;
 import lotto.domain.result.Rank;
 import lotto.domain.ticket.Lotto;
 import lotto.domain.ticket.Lottos;

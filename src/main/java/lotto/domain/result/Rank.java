@@ -1,12 +1,5 @@
 package lotto.domain.result;
 
-import lotto.domain.ticket.Lotto;
-import lotto.domain.winning.BonusNumber;
-import lotto.domain.winning.WinningNumbers;
-
-import java.util.ArrayList;
-import java.util.List;
-
 public enum Rank {
     FIFTH(3, false, 5000),
     FOURTH(4, false, 50000),
