@@ -18,7 +18,7 @@ public class LottoIssuer {
     }
 
     public Lottos issue(Money money) {
-        int count = money.getMoney() / LottoPrice.UNIT;
+        int count = money.purchasableCount();
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < count; i++) {
             Lotto lotto = new Lotto(lottoNumberGenerator.getNumbers());

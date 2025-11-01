@@ -19,6 +19,10 @@ public final class Money {
         return money;
     }
 
+    public int purchasableCount() {
+        return money / LottoPrice.UNIT;
+    }
+
     private void validatePositive(int number) {
         if (number < ZERO) {
             throw new IllegalArgumentException("[ERROR] 양의 정수가 아닙니다.");
