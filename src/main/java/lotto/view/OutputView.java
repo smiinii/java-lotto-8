@@ -15,7 +15,7 @@ public class OutputView {
         }
     }
 
-    public void printMatchReult(Map<Rank, Integer> matchReult) {
+    public void printMatchResult(Map<Rank, Integer> matchReult) {
         printHeader();
         for (Rank rank : Rank.values()) {
             if (rank == Rank.NONE) {
