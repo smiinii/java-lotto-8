@@ -1,6 +1,7 @@
 package lotto.domain.result;
 
 
+import lotto.domain.purchase.Money;
 import lotto.domain.ticket.Lotto;
 import lotto.domain.ticket.Lottos;
 import lotto.domain.winning.BonusNumber;
@@ -21,5 +22,15 @@ public class ResultCalculator {
             result.put(rank, result.get(rank) + 1);
         }
         return result;
+    }
+
+    public double calculateYield(Map<Rank, Integer> matchResult, Money money) {
+        double totalPrizeAmount = matchResult.entrySet().stream()
+                .mapToDouble(entry -> entry.getKey().getPrizeMoney() * entry.getValue())
+                .sum();
+
+        double yield = (totalPrizeAmount / money.getMoney()) * 100;
+
+        return Math.round(yield * 10.0) / 10.0;
     }
 }
