@@ -35,7 +35,7 @@ public class ResultCalculatorTest {
         ResultCalculator resultCalculator = new ResultCalculator();
 
         // when
-        Map<Rank, Integer> result = resultCalculator.matchReult(lottos, winningNumbers, bonusNumber);
+        Map<Rank, Integer> result = resultCalculator.matchResult(lottos, winningNumbers, bonusNumber);
 
         // then
         assertThat(result.get(Rank.FIRST)).isEqualTo(1);
@@ -51,7 +51,7 @@ public class ResultCalculatorTest {
     void calculateYieldTest() {
         // given
         ResultCalculator calculator = new ResultCalculator();
-        Map<Rank, Integer> matchResult = new EnumMap<>(Rank.class);
+        EnumMap<Rank, Integer> matchResult = new EnumMap<>(Rank.class);
         for (Rank r : Rank.values()) {
             matchResult.put(r, 0);
         }
@@ -68,7 +68,7 @@ public class ResultCalculatorTest {
     void calculateYield_zeroPrize() {
         // given
         ResultCalculator calculator = new ResultCalculator();
-        Map<Rank, Integer> matchResult = new EnumMap<>(Rank.class);
+        EnumMap<Rank, Integer> matchResult = new EnumMap<>(Rank.class);
         for (Rank r : Rank.values()) {
             matchResult.put(r, 0);
         }

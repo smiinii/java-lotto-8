@@ -7,13 +7,12 @@ import lotto.domain.ticket.Lottos;
 import lotto.domain.winning.BonusNumber;
 import lotto.domain.winning.WinningNumbers;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.util.EnumMap;
 
 public class ResultCalculator {
 
-    public Map<Rank, Integer> matchReult(Lottos lottos, WinningNumbers winningNumbers, BonusNumber bonusNumber) {
-        Map<Rank, Integer> result = new LinkedHashMap<>();
+    public EnumMap<Rank, Integer> matchResult(Lottos lottos, WinningNumbers winningNumbers, BonusNumber bonusNumber) {
+        EnumMap<Rank, Integer> result = new EnumMap<>(Rank.class);
         for (Rank rank : Rank.values()) {
             result.put(rank, 0);
         }
@@ -24,7 +23,7 @@ public class ResultCalculator {
         return result;
     }
 
-    public double calculateYield(Map<Rank, Integer> matchResult, Money money) {
+    public double calculateYield(EnumMap<Rank, Integer> matchResult, Money money) {
         double totalPrizeAmount = matchResult.entrySet().stream()
                 .mapToDouble(entry -> entry.getKey().getPrizeMoney() * entry.getValue())
                 .sum();

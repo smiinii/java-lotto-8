@@ -10,8 +10,8 @@ import lotto.domain.winning.WinningNumbers;
 import lotto.dto.LottoIssueResult;
 import lotto.dto.LottoGameResult;
 
+import java.util.EnumMap;
 import java.util.List;
-import java.util.Map;
 
 public class LottoGameService {
 
@@ -37,16 +37,16 @@ public class LottoGameService {
     }
 
     public LottoGameResult matchResult(LottoIssueResult lottoIssueResult, WinningNumbers winningNumbers, BonusNumber bonusNumber) {
-        Map<Rank, Integer> matchResult = match(lottoIssueResult.getIssuedLottos(), winningNumbers, bonusNumber);
+        EnumMap<Rank, Integer> matchResult = match(lottoIssueResult.getIssuedLottos(), winningNumbers, bonusNumber);
         double lottoYield = calculateYield(matchResult, lottoIssueResult.getPurchaseMoney());
         return new LottoGameResult(matchResult, lottoYield);
     }
 
-    private Map<Rank, Integer> match(Lottos issuedLottos, WinningNumbers winningNumbers, BonusNumber bonusNumber) {
-        return resultCalculator.matchReult(issuedLottos, winningNumbers, bonusNumber);
+    private EnumMap<Rank, Integer> match(Lottos issuedLottos, WinningNumbers winningNumbers, BonusNumber bonusNumber) {
+        return resultCalculator.matchResult(issuedLottos, winningNumbers, bonusNumber);
     }
 
-    private double calculateYield(Map<Rank, Integer> matchResult, Money money) {
+    private double calculateYield(EnumMap<Rank, Integer> matchResult, Money money) {
         return resultCalculator.calculateYield(matchResult, money);
     }
 }
