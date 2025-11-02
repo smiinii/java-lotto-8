@@ -1,7 +1,6 @@
 package lotto.domain.issuance;
 
 import lotto.domain.generator.LottoNumberGenerator;
-import lotto.domain.purchase.LottoPrice;
 import lotto.domain.purchase.Money;
 import lotto.domain.ticket.Lotto;
 import lotto.domain.ticket.Lottos;
