@@ -2,6 +2,7 @@ package lotto.domain.purchase;
 
 public final class Money {
 
+    private static final int UNIT = 1000;
     private static final int ZERO = 0;
     private final int money;
 
@@ -20,7 +21,7 @@ public final class Money {
     }
 
     public int purchasableCount() {
-        return money / LottoPrice.UNIT;
+        return money / UNIT;
     }
 
     private void validatePositive(int number) {
@@ -30,8 +31,8 @@ public final class Money {
     }
 
     private void validateDivisibleByLottoPrice(int number) {
-        if ((number % LottoPrice.UNIT) != ZERO) {
-            throw new IllegalArgumentException("[ERROR] " + LottoPrice.UNIT + "원으로 딱 나누어 떨어져야 합니다.");
+        if ((number % UNIT) != ZERO) {
+            throw new IllegalArgumentException("[ERROR] " + UNIT + "원으로 딱 나누어 떨어져야 합니다.");
         }
     }
 }
