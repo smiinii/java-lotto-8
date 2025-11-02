@@ -1,7 +1,7 @@
 package lotto.dto;
 
-import lotto.domain.purchase.Money;
-import lotto.domain.ticket.Lottos;
+import lotto.domain.Money;
+import lotto.domain.Lottos;
 
 public class LottoIssueResult {
 

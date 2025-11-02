@@ -1,9 +1,9 @@
 package lotto.service;
 
-import lotto.domain.issuance.LottoIssuer;
-import lotto.domain.purchase.Money;
-import lotto.domain.result.Rank;
-import lotto.domain.ticket.Lottos;
+import lotto.domain.LottoIssuer;
+import lotto.domain.Money;
+import lotto.domain.Rank;
+import lotto.domain.Lottos;
 import lotto.domain.winning.BonusNumber;
 import lotto.domain.winning.WinningNumbers;
 import lotto.dto.LottoIssueResult;

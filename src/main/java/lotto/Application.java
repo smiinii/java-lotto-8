@@ -3,7 +3,7 @@ package lotto;
 import lotto.controller.LottoGameController;
 import lotto.domain.generator.LottoNumberGenerator;
 import lotto.domain.generator.UniqueRandomNumberGenerator;
-import lotto.domain.issuance.LottoIssuer;
+import lotto.domain.LottoIssuer;
 import lotto.service.LottoGameService;
 import lotto.view.InputView;
 import lotto.view.OutputView;

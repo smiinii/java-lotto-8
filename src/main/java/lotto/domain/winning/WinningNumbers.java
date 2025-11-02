@@ -1,8 +1,8 @@
 package lotto.domain.winning;
 
-import lotto.domain.result.Rank;
+import lotto.domain.Rank;
 import lotto.domain.rule.LottoRule;
-import lotto.domain.ticket.Lotto;
+import lotto.domain.Lotto;
 
 import java.util.ArrayList;
 import java.util.LinkedHashSet;

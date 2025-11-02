@@ -1,10 +1,11 @@
 package lotto.domain.issuance;
 
+import lotto.domain.LottoIssuer;
 import lotto.domain.generator.FixedLottoNumberGenerator;
 import lotto.domain.generator.LottoNumberGenerator;
-import lotto.domain.purchase.Money;
-import lotto.domain.ticket.Lotto;
-import lotto.domain.ticket.Lottos;
+import lotto.domain.Money;
+import lotto.domain.Lotto;
+import lotto.domain.Lottos;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

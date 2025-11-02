@@ -1,6 +1,5 @@
-package lotto.domain.ticket;
+package lotto.domain;
 
-import lotto.domain.result.Rank;
 import lotto.domain.winning.BonusNumber;
 import lotto.domain.winning.WinningNumbers;
 

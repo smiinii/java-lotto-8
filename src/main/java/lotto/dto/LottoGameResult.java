@@ -1,6 +1,6 @@
 package lotto.dto;
 
-import lotto.domain.result.Rank;
+import lotto.domain.Rank;
 
 import java.util.EnumMap;
 

@@ -2,8 +2,6 @@ package lotto.domain;
 
 import lotto.domain.generator.FixedLottoNumberGenerator;
 import lotto.domain.generator.LottoNumberGenerator;
-import lotto.domain.issuance.LottoIssuer;
-import lotto.domain.purchase.Money;
 import lotto.domain.winning.BonusNumber;
 import lotto.domain.winning.WinningNumbers;
 import lotto.dto.LottoGameResult;
