@@ -114,8 +114,8 @@
 로또 생성과 관련된 핵심 도메인이다. `LottoIssuer`이 `Money`를 기반으로 로또를 발행하며 `Lottos`는 발행된 로또들을 관리한다.
 
 
-- `LottoRule` / `LottoPrice`   
-규칙(범위, 개수)과 가격 상수의 단일 책임화하고 외부에서 참조만 한다.
+- `LottoRule`
+규칙(범위, 개수) 상수 모음, 외부에서 참조만 한다.
 
 
 - `ResultCalculator` / `Rank`   
