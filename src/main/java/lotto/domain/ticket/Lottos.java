@@ -1,5 +1,10 @@
 package lotto.domain.ticket;
 
+import lotto.domain.result.Rank;
+import lotto.domain.winning.BonusNumber;
+import lotto.domain.winning.WinningNumbers;
+
+import java.util.EnumMap;
 import java.util.List;
 
 public class Lottos {
@@ -8,6 +13,18 @@ public class Lottos {
 
     public Lottos(List<Lotto> lottos) {
         this.lottos = lottos;
+    }
+
+    public EnumMap<Rank, Integer> matchResult(WinningNumbers winningNumbers, BonusNumber bonusNumber) {
+        EnumMap<Rank, Integer> result = new EnumMap<>(Rank.class);
+        for (Rank rank : Rank.values()) {
+            result.put(rank, 0);
+        }
+        for (Lotto lotto : lottos) {
+            Rank rank = winningNumbers.match(lotto, bonusNumber);
+            result.put(rank, result.get(rank) + 1);
+        }
+        return result;
     }
 
     public List<Lotto> getLottos() {

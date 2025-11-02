@@ -43,7 +43,7 @@ public class LottoGameService {
     }
 
     private EnumMap<Rank, Integer> match(Lottos issuedLottos, WinningNumbers winningNumbers, BonusNumber bonusNumber) {
-        return resultCalculator.matchResult(issuedLottos, winningNumbers, bonusNumber);
+        return issuedLottos.matchResult(winningNumbers, bonusNumber);
     }
 
     private double calculateYield(EnumMap<Rank, Integer> matchResult, Money money) {
