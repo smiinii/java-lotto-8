@@ -4,7 +4,6 @@ import lotto.controller.LottoGameController;
 import lotto.domain.generator.LottoNumberGenerator;
 import lotto.domain.generator.UniqueRandomNumberGenerator;
 import lotto.domain.issuance.LottoIssuer;
-import lotto.domain.result.ResultCalculator;
 import lotto.service.LottoGameService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -17,8 +16,7 @@ public class Application {
         LottoNumberGenerator lottoNumberGenerator = new UniqueRandomNumberGenerator();
         LottoIssuer lottoIssuer = new LottoIssuer(lottoNumberGenerator);
 
-        ResultCalculator resultCalculator = new ResultCalculator();
-        LottoGameService lottoGameService = new LottoGameService(lottoIssuer, resultCalculator);
+        LottoGameService lottoGameService = new LottoGameService(lottoIssuer);
 
         LottoGameController lottoGameController = new LottoGameController(inputView, outputView, lottoGameService);
         lottoGameController.run();
