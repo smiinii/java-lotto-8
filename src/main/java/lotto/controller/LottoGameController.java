@@ -25,19 +25,19 @@ public class LottoGameController {
     }
 
     public void run() {
-        LottoIssueResult lottoIssueResult = askLottoIssue();
+        LottoIssueResult lottoIssueResult = requestLottoIssuanceUntilValid();
         outputView.printIssuedLotto(lottoIssueResult.getIssuedLottos());
 
-        WinningNumbers winningNumbers = askWinningNumbers();
+        WinningNumbers winningNumbers = requestWinningNumbersUntilValid();
 
-        BonusNumber bonusNumber = askBonusNumber(winningNumbers);
+        BonusNumber bonusNumber = requestBonusNumberUntilValid(winningNumbers);
 
         LottoGameResult lottoGameResult = lottoGameService.matchResult(lottoIssueResult, winningNumbers, bonusNumber);
         outputView.printMatchResult(lottoGameResult.getMatchResult());
         outputView.printTotalPrizeAmount(lottoGameResult.getLottoYield());
     }
 
-    private LottoIssueResult askLottoIssue() {
+    private LottoIssueResult requestLottoIssuanceUntilValid() {
         while (true) {
             try{
                 int parseNumber = InputParser.parseNumber(inputView.readPurchaseAmount());
@@ -49,7 +49,7 @@ public class LottoGameController {
         }
     }
 
-    private WinningNumbers askWinningNumbers() {
+    private WinningNumbers requestWinningNumbersUntilValid() {
         while (true) {
             try{
                 String input = inputView.readWinningNumbers();
@@ -61,7 +61,7 @@ public class LottoGameController {
         }
     }
 
-    private BonusNumber askBonusNumber(WinningNumbers winningNumbers) {
+    private BonusNumber requestBonusNumberUntilValid(WinningNumbers winningNumbers) {
         while (true) {
             try{
                 String input = inputView.readBonusNumber();
