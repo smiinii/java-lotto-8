@@ -111,15 +111,15 @@
 
 
 - `Lotto` / `Lottos` / `LottoIssuer`   
-로또 생성과 관련된 핵심 도메인이다. `LottoIssuer`이 `Money`를 기반으로 로또를 발행하며 `Lottos`는 발행된 로또들을 관리한다.
+로또 생성과 관련된 핵심 도메인이다.
 
 
 - `LottoRule`
 규칙(범위, 개수) 상수 모음, 외부에서 참조만 한다.
 
 
-- `ResultCalculator` / `Rank`   
-당첨 번호와 비교하여 등수를 계산하고 수익률을 산출한다.
+- `Rank`   
+로또 등수가 몇등인지 판단한다.
 
 
 - `LottoNumberGenerator`  
