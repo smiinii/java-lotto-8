@@ -12,7 +12,7 @@ public class OutputView {
         System.out.println();
         System.out.println(lottos.getLottoCount() + "개를 구매했습니다.");
         for (Lotto lotto : lottos.getLottos()) {
-            System.out.println("[" + lotto.getNumbers() + "]");
+            System.out.println(lotto.values());
         }
     }
 

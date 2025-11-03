@@ -1,7 +1,5 @@
 package lotto.domain;
 
-import lotto.domain.winning.WinningNumbers;
-
 import java.util.EnumMap;
 import java.util.List;
 

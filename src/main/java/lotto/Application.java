@@ -1,8 +1,8 @@
 package lotto;
 
 import lotto.controller.LottoGameController;
-import lotto.domain.generator.LottoNumberGenerator;
-import lotto.domain.generator.UniqueRandomNumberGenerator;
+import lotto.domain.LottoNumberGenerator;
+import lotto.domain.UniqueRandomNumberGenerator;
 import lotto.domain.LottoIssuer;
 import lotto.service.LottoGameService;
 import lotto.view.InputView;

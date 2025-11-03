@@ -4,7 +4,7 @@ import lotto.domain.LottoIssuer;
 import lotto.domain.Money;
 import lotto.domain.Rank;
 import lotto.domain.Lottos;
-import lotto.domain.winning.WinningNumbers;
+import lotto.domain.WinningNumbers;
 import lotto.dto.LottoIssueResult;
 import lotto.dto.LottoGameResult;
 
