@@ -9,7 +9,7 @@ public class LottoGameResult {
     private final double lottoYield;
 
     public LottoGameResult(Map<Rank, Integer> matchResult, double lottoYield) {
-        this.matchResult = matchResult;
+        this.matchResult = Map.copyOf(matchResult);
         this.lottoYield = lottoYield;
     }
 
