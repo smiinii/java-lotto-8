@@ -1,7 +1,6 @@
 package lotto.controller;
 
 import lotto.domain.Money;
-import lotto.domain.winning.BonusNumber;
 import lotto.domain.winning.WinningNumbers;
 import lotto.dto.LottoIssueResult;
 import lotto.dto.LottoGameResult;
@@ -28,11 +27,11 @@ public class LottoGameController {
         LottoIssueResult lottoIssueResult = requestLottoIssuanceUntilValid();
         outputView.printIssuedLotto(lottoIssueResult.getIssuedLottos());
 
-        WinningNumbers winningNumbers = requestWinningNumbersUntilValid();
+        WinningNumbers pending = requestWinningNumbersUntilValid();
 
-        BonusNumber bonusNumber = requestBonusNumberUntilValid(winningNumbers);
+        WinningNumbers winningNumbers = requestBonusNumberUntilValid(pending);
 
-        LottoGameResult lottoGameResult = lottoGameService.matchResult(lottoIssueResult, winningNumbers, bonusNumber);
+        LottoGameResult lottoGameResult = lottoGameService.matchResult(lottoIssueResult, winningNumbers);
         outputView.printMatchResult(lottoGameResult.getMatchResult());
         outputView.printTotalPrizeAmount(lottoGameResult.getLottoYield());
     }
@@ -53,20 +52,20 @@ public class LottoGameController {
         while (true) {
             try{
                 String input = inputView.readWinningNumbers();
-                List<Integer> parseNumbers = InputParser.parseWinningNumbers(input);
-                return lottoGameService.createWinningNumbers(parseNumbers);
+                List<Integer> parseWinningNumbers = InputParser.parseWinningNumbers(input);
+                return lottoGameService.createWinningNumbers(parseWinningNumbers);
             } catch (IllegalArgumentException e) {
                 outputView.printError(e.getMessage());
             }
         }
     }
 
-    private BonusNumber requestBonusNumberUntilValid(WinningNumbers winningNumbers) {
+    private WinningNumbers requestBonusNumberUntilValid(WinningNumbers winningNumbers) {
         while (true) {
             try{
                 String input = inputView.readBonusNumber();
-                int parseNumber = InputParser.parseNumber(input);
-                return lottoGameService.createBonusNumber(parseNumber, winningNumbers);
+                int parseBonusNumber = InputParser.parseNumber(input);
+                return lottoGameService.createBonusNumber(parseBonusNumber, winningNumbers);
             } catch (IllegalArgumentException e) {
                 outputView.printError(e.getMessage());
             }
