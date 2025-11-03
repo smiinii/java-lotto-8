@@ -10,13 +10,13 @@ import lotto.view.OutputView;
 import java.util.List;
 import java.util.Map;
 
-public class LottoGameManager {
+public class LottoGameController {
 
     private final InputView inputView;
     private final OutputView outputView;
     private final LottoIssuer lottoIssuer;
 
-    public LottoGameManager(InputView inputView, OutputView outputView, LottoIssuer lottoIssuer) {
+    public LottoGameController(InputView inputView, OutputView outputView, LottoIssuer lottoIssuer) {
         this.inputView = inputView;
         this.outputView = outputView;
         this.lottoIssuer = lottoIssuer;
