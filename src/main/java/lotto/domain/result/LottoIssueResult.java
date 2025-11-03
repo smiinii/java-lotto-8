@@ -2,6 +2,10 @@ package lotto.domain.result;
 
 import lotto.domain.Money;
 import lotto.domain.Lottos;
+import lotto.domain.Rank;
+import lotto.domain.WinningNumbers;
+
+import java.util.EnumMap;
 
 public class LottoIssueResult {
 
@@ -19,5 +23,9 @@ public class LottoIssueResult {
 
     public Money getPurchaseMoney() {
         return purchaseMoney;
+    }
+
+    public EnumMap<Rank, Integer> match(WinningNumbers winningNumbers) {
+        return issuedLottos.matchResult(winningNumbers);
     }
 }

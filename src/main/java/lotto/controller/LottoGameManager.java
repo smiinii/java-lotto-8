@@ -1,26 +1,25 @@
 package lotto.controller;
 
-import lotto.domain.Money;
-import lotto.domain.WinningNumbers;
+import lotto.domain.*;
 import lotto.domain.result.LottoIssueResult;
 import lotto.domain.result.LottoGameResult;
-import lotto.service.LottoGameService;
 import lotto.util.InputParser;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
+import java.util.EnumMap;
 import java.util.List;
 
-public class LottoGameController {
+public class LottoGameManager {
 
     private final InputView inputView;
     private final OutputView outputView;
-    private final LottoGameService lottoGameService;
+    private final LottoIssuer lottoIssuer;
 
-    public LottoGameController(InputView inputView, OutputView outputView, LottoGameService lottoGameService) {
+    public LottoGameManager(InputView inputView, OutputView outputView, LottoIssuer lottoIssuer) {
         this.inputView = inputView;
         this.outputView = outputView;
-        this.lottoGameService = lottoGameService;
+        this.lottoIssuer = lottoIssuer;
     }
 
     public void run() {
@@ -28,10 +27,12 @@ public class LottoGameController {
         outputView.printIssuedLotto(lottoIssueResult.getIssuedLottos());
 
         WinningNumbers pending = requestWinningNumbersUntilValid();
-
         WinningNumbers winningNumbers = requestBonusNumberUntilValid(pending);
 
-        LottoGameResult lottoGameResult = lottoGameService.matchResult(lottoIssueResult, winningNumbers);
+        EnumMap<Rank, Integer> matchResult = lottoIssueResult.match(winningNumbers);
+        double yield = calculateYield(matchResult, lottoIssueResult.getPurchaseMoney());
+
+        LottoGameResult lottoGameResult = new LottoGameResult(matchResult, yield);
         outputView.printMatchResult(lottoGameResult.getMatchResult());
         outputView.printTotalPrizeAmount(lottoGameResult.getLottoYield());
     }
@@ -41,7 +42,8 @@ public class LottoGameController {
             try{
                 int parseNumber = InputParser.parseNumber(inputView.readPurchaseAmount());
                 Money purchaseAmount = Money.of(parseNumber);
-                return lottoGameService.issue(purchaseAmount);
+                Lottos issuedLottos = lottoIssuer.issue(purchaseAmount);
+                return new LottoIssueResult(issuedLottos, purchaseAmount);
             } catch (IllegalArgumentException e) {
                 outputView.printError(e.getMessage());
             }
@@ -53,7 +55,7 @@ public class LottoGameController {
             try{
                 String input = inputView.readWinningNumbers();
                 List<Integer> parseWinningNumbers = InputParser.parseWinningNumbers(input);
-                return lottoGameService.createWinningNumbers(parseWinningNumbers);
+                return WinningNumbers.fromWinningNumbers(parseWinningNumbers);
             } catch (IllegalArgumentException e) {
                 outputView.printError(e.getMessage());
             }
@@ -65,10 +67,18 @@ public class LottoGameController {
             try{
                 String input = inputView.readBonusNumber();
                 int parseBonusNumber = InputParser.parseNumber(input);
-                return lottoGameService.createBonusNumber(parseBonusNumber, winningNumbers);
+                return winningNumbers.withBonus(parseBonusNumber);
             } catch (IllegalArgumentException e) {
                 outputView.printError(e.getMessage());
             }
         }
+    }
+
+    private double calculateYield(EnumMap<Rank, Integer> matchResult, Money money) {
+        double totalPrizeAmount = matchResult.entrySet().stream()
+                .mapToDouble(entry -> entry.getKey().getPrizeMoney() * entry.getValue())
+                .sum();
+        double yield = (totalPrizeAmount / money.getMoney()) * 100;
+        return Math.round(yield * 10.0) / 10.0;
     }
 }
