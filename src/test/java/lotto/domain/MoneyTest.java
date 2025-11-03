@@ -30,7 +30,7 @@ public class MoneyTest {
     @DisplayName("로또 개당 가격으로 나누어 떨어지지 않으면 예외처리")
     void validateDivisibleByLottoPriceTest() {
         // given & when & then
-        assertThatThrownBy(() -> {Money.of(1500);})
+        assertThatThrownBy(() -> Money.of(1500))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("딱 나누어 떨어져야 합니다.");
     }
