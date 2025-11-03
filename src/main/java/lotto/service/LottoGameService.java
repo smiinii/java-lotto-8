@@ -5,8 +5,8 @@ import lotto.domain.Money;
 import lotto.domain.Rank;
 import lotto.domain.Lottos;
 import lotto.domain.WinningNumbers;
-import lotto.dto.LottoIssueResult;
-import lotto.dto.LottoGameResult;
+import lotto.domain.result.LottoIssueResult;
+import lotto.domain.result.LottoGameResult;
 
 import java.util.EnumMap;
 import java.util.List;

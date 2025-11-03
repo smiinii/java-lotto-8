@@ -1,7 +1,7 @@
 package lotto.domain;
 
-import lotto.dto.LottoGameResult;
-import lotto.dto.LottoIssueResult;
+import lotto.domain.result.LottoGameResult;
+import lotto.domain.result.LottoIssueResult;
 import lotto.service.LottoGameService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
