@@ -106,7 +106,7 @@
 입력값의 파싱을 담당한다.
 
 
-- `Money` / `WinningNumbers` / `BonusNumber`   
+- `Money` / `WinningNumbers`  
 값 객체로 입력 유효성 검증을 생성 시점에 수행하고 이후 불변 유지한다.
 
 
