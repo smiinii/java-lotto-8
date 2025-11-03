@@ -1,8 +1,5 @@
 package lotto.domain;
 
-import lotto.domain.generator.FixedLottoNumberGenerator;
-import lotto.domain.generator.LottoNumberGenerator;
-import lotto.domain.winning.WinningNumbers;
 import lotto.dto.LottoGameResult;
 import lotto.dto.LottoIssueResult;
 import lotto.service.LottoGameService;

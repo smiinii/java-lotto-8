@@ -37,6 +37,6 @@ class LottoTest {
         // given
         Lotto lotto = new Lotto(List.of(1, 41, 8, 12, 23, 4));
         // when & then
-        assertThat(lotto.getNumbers()).containsExactly(1, 4, 8, 12, 23, 41);
+        assertThat(lotto.values()).containsExactly(1, 4, 8, 12, 23, 41);
     }
 }

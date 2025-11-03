@@ -1,7 +1,5 @@
-package lotto.domain.winning;
+package lotto.domain;
 
-import lotto.domain.Rank;
-import lotto.domain.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -20,7 +18,7 @@ public class WinningNumbersTest {
         // when & then
         assertThatThrownBy(() -> WinningNumbers.fromWinningNumbers(numbers))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("당첨 번호 개수는");
+                .hasMessageContaining("로또 번호 개수는");
     }
 
     @Test
@@ -31,7 +29,7 @@ public class WinningNumbersTest {
         // when & then
         assertThatThrownBy(() -> WinningNumbers.fromWinningNumbers(numbers))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("당첨 번호의 범위는");
+                .hasMessageContaining("로또 번호의 범위는");
     }
 
     @Test
@@ -42,7 +40,7 @@ public class WinningNumbersTest {
         // when
         assertThatThrownBy(() -> WinningNumbers.fromWinningNumbers(numbers))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("당첨 번호가 중복됩니다.");
+                .hasMessageContaining("로또 번호가 중복됩니다.");
         // then
     }
 
@@ -93,7 +91,7 @@ public class WinningNumbersTest {
         WinningNumbers pending = WinningNumbers.fromWinningNumbers(setWinningNumbers);
         WinningNumbers winningNumbers = pending.withBonus(bonusNumber);
         // then
-        assertThat(winningNumbers.getWinningNumbers()).containsExactly(1, 2, 3, 4, 5, 6);
+        assertThat(winningNumbers.getWinningNumbers().getNumbers()).containsExactly(1, 2, 3, 4, 5, 6);
         assertThat(winningNumbers.getBonusNumber()).isEqualTo(7);
     }
 }

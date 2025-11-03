@@ -1,11 +1,5 @@
-package lotto.domain.issuance;
+package lotto.domain;
 
-import lotto.domain.LottoIssuer;
-import lotto.domain.generator.FixedLottoNumberGenerator;
-import lotto.domain.generator.LottoNumberGenerator;
-import lotto.domain.Money;
-import lotto.domain.Lotto;
-import lotto.domain.Lottos;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -25,7 +19,7 @@ public class LottoIssuerTest {
         // when & then
         Lottos lottos = lottoIssuer.issue(money);
         for (Lotto lotto : lottos.getLottos()) {
-            assertThat(lotto.getNumbers()).containsExactly(1,2,3,4,5,6);
+            assertThat(lotto.values()).containsExactly(1,2,3,4,5,6);
         }
     }
 }

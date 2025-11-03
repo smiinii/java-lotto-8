@@ -1,6 +1,5 @@
-package lotto.domain.generator;
+package lotto.domain;
 
-import lotto.domain.rule.LottoRule;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -20,7 +19,7 @@ public class LottoNumberGeneratorTest {
             List<Integer> randomLottoNumbers = lottoNumberGenerator.getNumbers();
             assertThat(randomLottoNumbers)
                     .allSatisfy(number ->
-                            assertThat(number).isBetween(LottoRule.MIN, LottoRule.MAX));
+                            assertThat(number).isBetween(LottoNumber.minRange(), LottoNumber.maxRange()));
         }
     }
 }
