@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import lotto.domain.winning.BonusNumber;
 import lotto.domain.winning.WinningNumbers;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -16,8 +15,8 @@ public class LottosTest {
     @DisplayName("여러 장의 로또를 매칭하여 등수별 개수를 집계한다")
     void allMatchResultTest() {
         // given
-        WinningNumbers winningNumbers = WinningNumbers.from(List.of(1,2,3,4,5,6));
-        BonusNumber bonusNumber = BonusNumber.of(7, winningNumbers.getWinningNumbers());
+        WinningNumbers pending = WinningNumbers.fromWinningNumbers(List.of(1,2,3,4,5,6));
+        WinningNumbers winningNumbers = pending.withBonus(7);
 
         Lottos lottos = new Lottos(List.of(
                 new Lotto(List.of(1,2,3,4,5,6)),
@@ -29,7 +28,7 @@ public class LottosTest {
         ));
 
         // when
-        Map<Rank, Integer> result = lottos.matchResult(winningNumbers, bonusNumber);
+        Map<Rank, Integer> result = lottos.matchResult(winningNumbers);
 
         // then
         assertThat(result.get(Rank.FIRST)).isEqualTo(1);
