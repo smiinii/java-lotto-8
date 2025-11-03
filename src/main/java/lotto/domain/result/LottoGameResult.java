@@ -2,18 +2,18 @@ package lotto.domain.result;
 
 import lotto.domain.Rank;
 
-import java.util.EnumMap;
+import java.util.Map;
 
 public class LottoGameResult {
-    private final EnumMap<Rank, Integer> matchResult;
+    private final Map<Rank, Integer> matchResult;
     private final double lottoYield;
 
-    public LottoGameResult(EnumMap<Rank, Integer> matchResult, double lottoYield) {
+    public LottoGameResult(Map<Rank, Integer> matchResult, double lottoYield) {
         this.matchResult = matchResult;
         this.lottoYield = lottoYield;
     }
 
-    public EnumMap<Rank, Integer> getMatchResult() {
+    public Map<Rank, Integer> getMatchResult() {
         return matchResult;
     }
 

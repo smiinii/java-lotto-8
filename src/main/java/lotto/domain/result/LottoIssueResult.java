@@ -6,6 +6,7 @@ import lotto.domain.Rank;
 import lotto.domain.WinningNumbers;
 
 import java.util.EnumMap;
+import java.util.Map;
 
 public class LottoIssueResult {
 
@@ -25,7 +26,8 @@ public class LottoIssueResult {
         return purchaseMoney;
     }
 
-    public EnumMap<Rank, Integer> match(WinningNumbers winningNumbers) {
-        return issuedLottos.matchResult(winningNumbers);
+    public Map<Rank, Integer> match(WinningNumbers winningNumbers) {
+        EnumMap<Rank,Integer> matchResult = issuedLottos.matchResult(winningNumbers);
+        return Map.copyOf(matchResult);
     }
 }

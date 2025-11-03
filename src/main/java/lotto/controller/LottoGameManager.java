@@ -7,8 +7,8 @@ import lotto.util.InputParser;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
-import java.util.EnumMap;
 import java.util.List;
+import java.util.Map;
 
 public class LottoGameManager {
 
@@ -29,7 +29,7 @@ public class LottoGameManager {
         WinningNumbers pending = requestWinningNumbersUntilValid();
         WinningNumbers winningNumbers = requestBonusNumberUntilValid(pending);
 
-        EnumMap<Rank, Integer> matchResult = lottoIssueResult.match(winningNumbers);
+        Map<Rank, Integer> matchResult = lottoIssueResult.match(winningNumbers);
         double yield = calculateYield(matchResult, lottoIssueResult.getPurchaseMoney());
 
         LottoGameResult lottoGameResult = new LottoGameResult(matchResult, yield);
@@ -74,7 +74,7 @@ public class LottoGameManager {
         }
     }
 
-    private double calculateYield(EnumMap<Rank, Integer> matchResult, Money money) {
+    private double calculateYield(Map<Rank, Integer> matchResult, Money money) {
         double totalPrizeAmount = matchResult.entrySet().stream()
                 .mapToDouble(entry -> entry.getKey().getPrizeMoney() * entry.getValue())
                 .sum();
