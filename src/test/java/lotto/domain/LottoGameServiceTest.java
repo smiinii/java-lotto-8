@@ -2,7 +2,6 @@ package lotto.domain;
 
 import lotto.domain.generator.FixedLottoNumberGenerator;
 import lotto.domain.generator.LottoNumberGenerator;
-import lotto.domain.winning.BonusNumber;
 import lotto.domain.winning.WinningNumbers;
 import lotto.dto.LottoGameResult;
 import lotto.dto.LottoIssueResult;
@@ -27,11 +26,11 @@ public class LottoGameServiceTest {
 
         LottoIssueResult issueResult = service.issue(purchaseMoney);
 
-        WinningNumbers winningNumbers = service.createWinningNumbers(List.of(1,2,3,7,8,9));
-        BonusNumber bonusNumber = service.createBonusNumber(10, winningNumbers);
+        WinningNumbers pending = service.createWinningNumbers(List.of(1,2,3,7,8,9));
+        WinningNumbers winningNumbers = service.createBonusNumber(10, pending);
 
         // when
-        LottoGameResult gameResult = service.matchResult(issueResult, winningNumbers, bonusNumber);
+        LottoGameResult gameResult = service.matchResult(issueResult, winningNumbers);
 
         // then
         assertThat(gameResult.getLottoYield()).isEqualTo(500);

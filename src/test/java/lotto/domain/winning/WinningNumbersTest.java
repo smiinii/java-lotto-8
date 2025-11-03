@@ -18,7 +18,7 @@ public class WinningNumbersTest {
         // given
         List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6, 7);
         // when & then
-        assertThatThrownBy(() -> WinningNumbers.from(numbers))
+        assertThatThrownBy(() -> WinningNumbers.fromWinningNumbers(numbers))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("당첨 번호 개수는");
     }
@@ -29,9 +29,9 @@ public class WinningNumbersTest {
         // given
         List<Integer> numbers = List.of(1, 2, 3, 4, 5, 46);
         // when & then
-        assertThatThrownBy(() -> WinningNumbers.from(numbers))
+        assertThatThrownBy(() -> WinningNumbers.fromWinningNumbers(numbers))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("당첨 금액 번호의 범위는");
+                .hasMessageContaining("당첨 번호의 범위는");
     }
 
     @Test
@@ -40,21 +40,10 @@ public class WinningNumbersTest {
         // given
         List<Integer> numbers = List.of(1, 2, 3, 4, 5, 5);
         // when
-        assertThatThrownBy(() -> WinningNumbers.from(numbers))
+        assertThatThrownBy(() -> WinningNumbers.fromWinningNumbers(numbers))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("당첨 번호가 중복됩니다.");
         // then
-    }
-
-    @Test
-    @DisplayName("모든 검증을 통과하면 성공")
-    void winningNumbersTest() {
-        // given
-        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
-        // when
-        WinningNumbers winningNumbers = WinningNumbers.from(numbers);
-        // then
-        assertThat(winningNumbers.getWinningNumbers()).containsExactly(1, 2, 3, 4, 5, 6);
     }
 
     @Test
@@ -62,11 +51,49 @@ public class WinningNumbersTest {
     void matchTest() {
         // given
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        WinningNumbers winningNumbers = WinningNumbers.from(List.of(1, 2, 3, 4, 5, 6));
-        BonusNumber bonusNumber = BonusNumber.of(7, winningNumbers.getWinningNumbers());
+        WinningNumbers pending = WinningNumbers.fromWinningNumbers(List.of(1, 2, 3, 4, 5, 6));
+        WinningNumbers winningNumbers = pending.withBonus(7);
         // when
-        Rank rank = winningNumbers.match(lotto, bonusNumber);
+        Rank rank = winningNumbers.match(lotto);
         // then
         assertThat(rank).isEqualTo(Rank.FIRST);
+    }
+
+    @Test
+    @DisplayName("보너스 번호 범위를 넘어가면 예외처리")
+    void validateBonusNumberRangeTest() {
+        // given
+        WinningNumbers winningNumbers = WinningNumbers.fromWinningNumbers(List.of(1, 2, 3, 4, 5, 6));
+        int bonusNumber = 46;
+        // when & then
+        assertThatThrownBy(() -> winningNumbers.withBonus(bonusNumber))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("보너스 번호의 범위는");
+    }
+
+    @Test
+    @DisplayName("당첨 번호와 중복되면 예외처리")
+    void validateDuplicationWinningNumberTest() {
+        // given
+        WinningNumbers winningNumbers = WinningNumbers.fromWinningNumbers(List.of(1, 2, 3, 4, 5, 6));
+        int bonusNumber = 1;
+        // when & then
+        assertThatThrownBy(() -> winningNumbers.withBonus(bonusNumber))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("당첨 번호와 중복됩니다.");
+    }
+
+    @Test
+    @DisplayName("모든 검증을 통과하면 성공")
+    void winningNumbersTest() {
+        // given
+        List<Integer> setWinningNumbers = List.of(1, 2, 3, 4, 5, 6);
+        int bonusNumber = 7;
+        // when
+        WinningNumbers pending = WinningNumbers.fromWinningNumbers(setWinningNumbers);
+        WinningNumbers winningNumbers = pending.withBonus(bonusNumber);
+        // then
+        assertThat(winningNumbers.getWinningNumbers()).containsExactly(1, 2, 3, 4, 5, 6);
+        assertThat(winningNumbers.getBonusNumber()).isEqualTo(7);
     }
 }
