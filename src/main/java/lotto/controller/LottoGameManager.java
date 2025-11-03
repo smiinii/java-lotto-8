@@ -24,7 +24,7 @@ public class LottoGameManager {
 
     public void run() {
         LottoIssueResult lottoIssueResult = requestLottoIssuanceUntilValid();
-        outputView.printIssuedLotto(lottoIssueResult.getIssuedLottos());
+        outputView.printIssuedLotto(lottoIssueResult.issuedLottosView());
 
         WinningNumbers pending = requestWinningNumbersUntilValid();
         WinningNumbers winningNumbers = requestBonusNumberUntilValid(pending);

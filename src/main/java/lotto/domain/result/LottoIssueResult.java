@@ -1,11 +1,9 @@
 package lotto.domain.result;
 
-import lotto.domain.Money;
-import lotto.domain.Lottos;
-import lotto.domain.Rank;
-import lotto.domain.WinningNumbers;
+import lotto.domain.*;
 
 import java.util.EnumMap;
+import java.util.List;
 import java.util.Map;
 
 public class LottoIssueResult {
@@ -18,12 +16,14 @@ public class LottoIssueResult {
         this.purchaseMoney = purchaseMoney;
     }
 
-    public Lottos getIssuedLottos() {
-        return issuedLottos;
-    }
-
     public Money getPurchaseMoney() {
         return purchaseMoney;
+    }
+
+    public List<List<Integer>> issuedLottosView() {
+        return issuedLottos.getLottos().stream()
+                .map(Lotto::values)
+                .toList();
     }
 
     public Map<Rank, Integer> match(WinningNumbers winningNumbers) {

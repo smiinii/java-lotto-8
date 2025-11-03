@@ -1,28 +1,27 @@
 package lotto.view;
 
 import lotto.domain.Rank;
-import lotto.domain.Lotto;
-import lotto.domain.Lottos;
 
+import java.util.List;
 import java.util.Map;
 
 public class OutputView {
 
-    public void printIssuedLotto(Lottos lottos) {
+    public void printIssuedLotto(List<List<Integer>> issuedLottos) {
         System.out.println();
-        System.out.println(lottos.getLottoCount() + "개를 구매했습니다.");
-        for (Lotto lotto : lottos.getLottos()) {
-            System.out.println(lotto.values());
+        System.out.println(issuedLottos.size() + "개를 구매했습니다.");
+        for (List<Integer> lottoNumbers : issuedLottos) {
+            System.out.println(lottoNumbers);
         }
     }
 
-    public void printMatchResult(Map<Rank, Integer> matchReult) {
+    public void printMatchResult(Map<Rank, Integer> matchResult) {
         printHeader();
         for (Rank rank : Rank.values()) {
             if (rank == Rank.NONE) {
                 continue;
             }
-            printRankLine(rank, matchReult.get(rank));
+            printRankLine(rank, matchResult.getOrDefault(rank, 0));
         }
     }
 
